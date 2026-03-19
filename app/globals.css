@@ -1,0 +1,154 @@
+/* FONT */
+@font-face {
+  font-family: '5YearsOld';
+  src: url('/fonts/5YearsOld.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* RESET */
+body {
+  margin: 0;
+  font-family: '5YearsOld', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* CONTAINER GLOBAL */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* HEADER FULL WIDTH */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+
+  background: rgba(247, 247, 247, 0.6);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* HEADER CONTENT */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 10px;
+}
+
+/* LOGO */
+.header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+/* NAV */
+nav ul {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav a {
+  color: #1a1919;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+nav a:hover {
+  opacity: 0.7;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: #ff61cd;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+/* SECTIONS */
+section {
+  padding: 80px 20px; /* 🔥 plus spacieux comme tu avais */
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2rem;
+  color: #dc2d16;
+  margin-bottom: 20px;
+}
+section p,
+section li {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* LISTE SANS BULLETS (important) */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+ul li {
+  background-color: #ffffff;
+  margin: 15px auto;
+  padding: 15px 20px;
+  max-width: 700px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+ul li:hover {
+  transform: scale(1.03);
+}
+
+/* BUTTON */
+button {
+  background-color: #dc2d16;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff4c3b;
+}
