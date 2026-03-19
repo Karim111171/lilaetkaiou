@@ -152,3 +152,55 @@ button {
 button:hover {
   background-color: #ff4c3b;
 }
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  section {
+    padding: 60px 15px;
+  }
+
+  section h2 {
+    font-size: 1.6rem;
+  }
+
+  section p,
+  section li {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  ul li {
+    max-width: 100%;
+    padding: 12px 15px;
+  }
+}
