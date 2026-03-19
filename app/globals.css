@@ -156,31 +156,57 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+
+  /* Global container stretches full width */
   .container {
-    max-width: 100%;
+    max-width: 100%; /* remove desktop limit */
     margin: 0;
-    padding: 10px;
+    padding: 0 10px;
   }
 
- .header-container {
+  /* Header container full width */
+  .header-container {
+    max-width: 100%; /* override desktop 1200px */
     flex-direction: column; /* stack h1 and nav */
-    align-items: center;    /* center both */
-    gap: 5px;               /* small space between */
+    align-items: center;    /* center content */
+    gap: 5px;
+    padding: 0 10px;        /* small horizontal padding */
   }
 
+  /* Nav stays in one line under h1 */
   nav ul {
-    flex-direction: row;   /* keep nav items on one line */
-    flex-wrap: wrap;       /* wrap if too long */
+    flex-direction: row;    /* single line */
+    flex-wrap: nowrap;      /* don't wrap unless really tiny screen */
     justify-content: center;
     gap: 15px;
+    width: 100%;            /* take full width */
     padding: 0;
     margin: 0;
   }
 
-  nav a {
-    font-size: 1rem;
+  nav li {
+    flex: 1 1 auto;         /* allow items to expand evenly if needed */
+    text-align: center;
   }
 
+  nav a {
+    font-size: 1rem;
+    line-height: 1.2;
+    white-space: nowrap;    /* prevent links from breaking */
+  }
+
+  /* Hero and sections */
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
 
   section {
     padding: 40px 15px;
