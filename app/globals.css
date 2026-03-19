@@ -15,9 +15,11 @@ body {
 
 /* CONTAINER GLOBAL */
 .container {
-  max-width: 1200px;
+  width: 100%;          /* full width */
+  max-width: 1200px;    /* limits container on desktop */
   margin: 0 auto;
   padding: 0 10px;
+  box-sizing: border-box;
 }
 
 /* HEADER FULL WIDTH */
@@ -160,20 +162,25 @@ button:hover {
     padding: 10px;
   }
 
-  .header-container {
-    flex-direction: column;
-    gap: 10px;
+ .header-container {
+    flex-direction: column; /* stack h1 and nav */
+    align-items: center;    /* center both */
+    gap: 5px;               /* small space between */
   }
 
   nav ul {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start; /* optional: align links to left */
+    flex-direction: row;   /* keep nav items on one line */
+    flex-wrap: wrap;       /* wrap if too long */
+    justify-content: center;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
   }
 
   nav a {
     font-size: 1rem;
   }
+
 
   section {
     padding: 40px 15px;
