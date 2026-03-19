@@ -6,12 +6,20 @@
 }
 
 /* RESET */
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
   font-family: '5YearsOld', sans-serif;
   background-color: #ffffff;
   color: #333;
-  box-sizing: border-box; /* ensure padding doesn't break width */
 }
 
 /* GLOBAL CONTAINER */
@@ -151,17 +159,22 @@ button:hover {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  
   .container {
     max-width: 100%;
     margin: 0;
-    padding: 0; /* removed horizontal padding */
+    padding: 0;
+    overflow-x: hidden;
   }
 
   .header-container {
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    padding: 0; /* removed horizontal padding */
+    padding: 0 10px;
   }
 
   nav ul {
@@ -186,7 +199,7 @@ button:hover {
   }
 
   .hero {
-    padding: 40px 10px; /* smaller padding */
+    padding: 0px 0px; /* smaller padding */
   }
 
   .hero h1 {
@@ -214,5 +227,10 @@ button:hover {
     max-width: 100%;
     padding: 12px 10px;
     margin: 10px 0; /* full width without horizontal gaps */
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
