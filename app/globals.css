@@ -154,6 +154,12 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 10px;
+  }
+
   .header-container {
     flex-direction: column;
     gap: 10px;
@@ -162,31 +168,15 @@ button:hover {
   nav ul {
     flex-direction: column;
     gap: 10px;
+    align-items: flex-start; /* optional: align links to left */
   }
 
   nav a {
     font-size: 1rem;
   }
-}
 
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav a {
-    font-size: 1rem;
-  }
-}
-@media (max-width: 768px) {
   section {
-    padding: 60px 15px;
+    padding: 40px 15px;
   }
 
   section h2 {
@@ -197,8 +187,7 @@ button:hover {
   section li {
     font-size: 1rem;
   }
-}
-@media (max-width: 768px) {
+
   ul li {
     max-width: 100%;
     padding: 12px 15px;
