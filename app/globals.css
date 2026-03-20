@@ -12,7 +12,7 @@
 
 html, body {
   margin: 0;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   width: 100%;
 }
 
@@ -20,6 +20,8 @@ body {
   font-family: '5YearsOld', sans-serif;
   background-color: #ffffff;
   color: #333;
+  overflow-x: hidden;
+  margin: 0;
 }
 
 /* GLOBAL CONTAINER */
@@ -157,9 +159,16 @@ button:hover {
   background-color: #ff4c3b;
 }
 
+.products-images {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  html, body {
+  body {
     overflow-x: hidden;
   }
   
@@ -167,7 +176,6 @@ button:hover {
     max-width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
   }
 
   .header-container {
@@ -231,6 +239,12 @@ button:hover {
 
   img {
     max-width: 100%;
+    height: auto;
+  }
+
+  .products-images img {
+    width: calc(50% - 10px);
+    max-width: 150px;
     height: auto;
   }
 }

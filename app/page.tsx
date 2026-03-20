@@ -46,13 +46,13 @@ export default function Home() {
 
       {/* Produits */}
       <section id="products">
-        <h2>Produits dérivés</h2>
-        <p>Livres, figurines, pâte à modeler éducative, jeux interactifs, et plus encore !</p>
-	  <Image src="/Kaiou.png" alt="Kaiou" width={300} height={200} />
-	  <Image src="/lila.png" alt="Lila" width={300} height={200} />
-	  
-      </section>
-
+  <h2>Produits dérivés</h2>
+  <p>Livres, figurines, pâte à modeler éducative, jeux interactifs, et plus encore !</p>
+  <div className="products-images">
+    <Image src="/Kaiou.png" alt="Kaiou" width={300} height={200} />
+    <Image src="/lila.png" alt="Lila" width={300} height={200} />
+  </div>
+</section>
       {/* Parents */}
       <section id="parents">
         <h2>Informations pour les parents</h2>
