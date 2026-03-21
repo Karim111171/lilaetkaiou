@@ -1,14 +1,10 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { PRODUCTS_BY_ID } from "../../../lib/products";
 
 type CheckoutItem = {
   id: number;
   quantity: number;
-};
-
-const ALLOWED_PRODUCTS: Record<number, { name: string; price: number }> = {
-  1: { name: "Pâte à modeler naturelle Lila & Kaiou – 200g", price: 19.99 },
-  2: { name: "Pâte à modeler naturelle Lila & Kaiou – Kaiou", price: 24.99 },
 };
 
 export async function POST(req: Request) {
@@ -63,7 +59,7 @@ export async function POST(req: Request) {
         );
       }
 
-      const product = ALLOWED_PRODUCTS[item.id];
+      const product = PRODUCTS_BY_ID[item.id];
 
       if (!product) {
         return NextResponse.json(
