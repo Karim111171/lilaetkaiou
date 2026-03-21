@@ -440,26 +440,26 @@ button.primary:hover {
    list-style: none;
   }
 
-  nav ul {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 15px;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
+ nav ul {
+  display: flex;
+  justify-content: space-between; /* répartit les 4 items */
+  align-items: center;
+  gap: 5px; /* réduit l’espace */
+  width: 100%;
+  padding: 0 5px;
+  margin: 0;
+}
 
-  nav li {
-    flex: 1 1 auto;
-    text-align: center;
-  }
+nav li {
+  flex: 1; /* chaque item prend une part égale */
+  text-align: center;
+}
 
-  nav a {
-    font-size: 1rem;
-    line-height: 1.2;
-    white-space: nowrap;
-  }
+nav a {
+  font-size: 0.85rem; /* 🔥 réduit légèrement */
+  white-space: nowrap; /* reste sur une ligne */
+  display: block;
+}
 
   .hero {
     padding: 0px 0px; /* smaller padding */
