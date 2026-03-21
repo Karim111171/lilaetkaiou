@@ -13,6 +13,7 @@ export default function Header() {
         <nav>
           <ul>
             <li><Link href="/shop" >Boutique</Link></li>
+		<li><Link href="/stories">Les Histoires</Link></li>
             {/*<li><Link href="/#parents">Parents</Link></li>*/}
             <li><Link href="/#contact">Contact</Link></li>
             <li><Link href="/cart">Panier ({totalItems})</Link></li>
