@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
 import Header from "../../components/Header";
@@ -17,8 +16,7 @@ export default function CartPage() {
         },
         body: JSON.stringify({
           items: cart.map((item) => ({
-            name: item.name,
-            price: item.price,
+            id: item.id,
             quantity: item.quantity,
           })),
         }),

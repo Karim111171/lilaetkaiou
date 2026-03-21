@@ -29,7 +29,7 @@ export default function Shop() {
     },
   ];
 
-  const handleCheckout = async (product: { name: string; price: number }) => {
+  const handleCheckout = async (product: { id: number }) => {
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -39,8 +39,7 @@ export default function Shop() {
         body: JSON.stringify({
           items: [
             {
-              name: product.name,
-              price: product.price,
+              id: product.id,
               quantity: 1,
             },
           ],
@@ -108,8 +107,7 @@ export default function Shop() {
               <button
                 onClick={() =>
                   handleCheckout({
-                    name: product.name,
-                    price: product.price,
+                    id: product.id,
                   })
                 }
                 className="cta-button"
