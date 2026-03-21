@@ -106,6 +106,12 @@ nav a:hover {
   color: #666;
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
 /* SECTIONS */
 section {
   padding: 80px 20px;
@@ -159,11 +165,6 @@ button:hover {
   background-color: #ff4c3b;
 }
 
-.hero-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
 
 button.primary {
   background-color: #ff61cd;
@@ -187,13 +188,6 @@ button.primary:hover {
 
 .cta-button:hover {
   background-color: #ff4c3b;
-}
-
-.products-images {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
 
 .product-card {
@@ -307,12 +301,6 @@ button.primary:hover {
 
   img {
     max-width: 100%;
-    height: auto;
-  }
-
-  .products-images img {
-    width: calc(50% - 10px);
-    max-width: 150px;
     height: auto;
   }
 
