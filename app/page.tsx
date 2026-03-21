@@ -4,7 +4,7 @@ import Header from "../components/Header";
 
 export default function Home() {
   return (
-    <div className="container">
+    <div id="products" className="container">
       <Header />
 
       <div className="hero">
@@ -27,16 +27,17 @@ export default function Home() {
         </Link>
       </div>
 
-      <section id="products" className="home-section">
+      <section className="home-section">
         <h2>Pourquoi Lila & Kaiou ?</h2>
 
         <div className="home-cards">
           <div className="info-card">
             <h3>🌿 Naturelle</h3>
-            <p>
-              Une pâte à modeler pensée pour une expérience douce, simple et
-              agréable à manipuler.</p> <p>Fabriquée exclusivement à base de produits alimentaires.
+            <p>Fabriquée exclusivement à base de produits alimentaires.
             </p>
+		<p>
+              Une pâte à modeler pensée pour une expérience douce, simple et
+              agréable à manipuler.</p> 
           </div>
 
           <div className="info-card">
@@ -50,8 +51,7 @@ export default function Home() {
           <div className="info-card">
             <h3>✨ Inspirée d’un univers magique</h3>
             <p>
-              Lila & Kaiou donnent une vraie identité au jeu et transforment la
-              création en aventure.
+              Tout en aidant les enfants à développer leur créativité, Lila & Kaiou véhicule de vraies valeurs que sont l'amour, le partage et l'empathie.
             </p>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="info-card">
             <h3>💛 Jeu créatif</h3>
             <p>
-              Une activité qui stimule l’imagination, la manipulation et
+              Une activité saine qui stimule l’imagination, la manipulation et
               l’expression personnelle.
             </p>
           </div>
