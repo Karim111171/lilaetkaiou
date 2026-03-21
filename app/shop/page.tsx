@@ -1,17 +1,31 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { useCart } from "../context/CartContext";
 import Header from "../../components/Header";
+import { useCart } from "../context/CartContext";
 
 export default function Shop() {
-  const { addToCart, totalItems } = useCart();
+  const { addToCart } = useCart();
 
   const products = [
     {
-      id: 1, name: "Lila & Kaiou – Pâte magique 200g", price: 19.99, image: "/Pot200gr.png", },
+      id: 1,
+      name: "Pâte à modeler naturelle Lila & Kaiou – 200g",
+      shortName: "Pâte magique 200g",
+      price: 19.99,
+      image: "/Pot200gr.png",
+      description:
+        "Une pâte à modeler naturelle, douce et créative inspirée de l’univers magique de Lila & Kaiou.",
+    },
     {
-      id: 2, name: "Lila & Kaiou – Pâte magique Kaiou", price: 2.99, image: "/Kaiou.png",
+      id: 2,
+      name: "Pâte à modeler naturelle Lila & Kaiou – Kaiou",
+      shortName: "Pâte magique Kaiou",
+      price: 24.99,
+      image: "/Kaiou.png",
+      description:
+        "Une version inspirée du personnage Kaiou pour enrichir le jeu, l’imagination et l’univers créatif des enfants.",
     },
   ];
 
@@ -50,43 +64,54 @@ export default function Shop() {
     <div className="container">
       <Header />
 
-      <h1>Boutique</h1>
+      <div className="shop-hero">
+        <h1>Boutique</h1>
+        <p>
+          Découvrez la boutique de Lila & Kaiou.
+        </p>
+      </div>
 
       <div className="products-grid">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
+          <div key={product.id} className="product-card enhanced-product-card">
             <h2>{product.name}</h2>
 
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={300}
-              height={200}
-            />
+            <div className="product-image-wrap">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={320}
+                height={240}
+              />
+            </div>
 
-            <p>
-              Une pâte à modeler créative inspirée de l’univers de Lila & Kaiou.
+            <p className="product-description">{product.description}</p>
+
+            <p className="product-price">
+              <strong>{product.price.toFixed(2)} €</strong>
             </p>
 
-            <p><strong>{product.price.toFixed(2)} €</strong></p>
+            <div className="product-benefits">
+              <p>✨ Stimule l’imagination</p>
+              <p>🌿 Texture douce et agréable</p>
+              <p>🎨 Inspire le jeu créatif</p>
+            </div>
 
-            <div
-              style={{
-                display: "flex",
-                gap: "12px",
-                justifyContent: "center",
-                flexWrap: "wrap",
-              }}
-            >
+            <div className="product-actions">
               <button
                 onClick={() => addToCart(product)}
-                className="cta-button"
+                className="cta-button secondary-button"
               >
                 Ajouter au panier
               </button>
 
               <button
-                onClick={() => handleCheckout(product)}
+                onClick={() =>
+                  handleCheckout({
+                    name: product.name,
+                    price: product.price,
+                  })
+                }
                 className="cta-button"
               >
                 Acheter maintenant
@@ -94,6 +119,38 @@ export default function Shop() {
             </div>
           </div>
         ))}
+      </div>
+
+      <section className="shop-info">
+        <div className="shop-info-block">
+          <h2>Pourquoi les parents aiment Lila & Kaiou ?</h2>
+          <p>
+            Notre pâte à modeler invite les enfants à inventer, transformer et raconter
+            leurs propres histoires dans un univers doux et magique.
+          </p>
+        </div>
+
+        <div className="shop-info-block">
+          <h2>Paiement & livraison</h2>
+          <p>
+            Paiement sécurisé via Stripe. L’adresse de livraison est demandée au moment
+            du paiement pour une commande simple et fluide.
+          </p>
+        </div>
+
+        <div className="shop-info-block">
+          <h2>L’univers Lila & Kaiou</h2>
+          <p>
+            Plus qu’un produit, c’est une porte d’entrée vers un monde créatif où les
+            enfants peuvent imaginer, modeler et donner vie à leurs idées.
+          </p>
+        </div>
+      </section>
+
+      <div className="shop-back-home">
+        <Link href="/" className="cta-button">
+          Retour à l’accueil
+        </Link>
       </div>
     </div>
   );
