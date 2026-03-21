@@ -33,9 +33,9 @@ export default function SuccessPage() {
         </p>
 
         <div style={{ marginTop: "20px" }}>
-          <Link href="/shop" className="cta-button">
-            Retour à la boutique
-          </Link>
+          <a href="/shop" className="cta-button">
+  Retour à la boutique
+</a>
         </div>
       </section>
     </div>
