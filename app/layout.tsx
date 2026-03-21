@@ -1,8 +1,9 @@
 import "./globals.css";
+import { CartProvider } from "./context/CartContext";
 
 export const metadata = {
   title: "Lila & Kaiou",
-  description: "Grandir, comprendre, imaginer.",
+  description: "La pâte à modeler naturelle de Lila & Kaiou",
 };
 
 export default function RootLayout({
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }
