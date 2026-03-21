@@ -9,10 +9,10 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-container">
-        <h1>Lila & Kaiou</h1>
+        <h1><Link href="/#products">Lila & Kaiou</Link></h1>
         <nav>
           <ul>
-            <li><Link href="/#products">Produits</Link></li>
+            <li><Link href="/shop" >Boutique</Link></li>
             {/*<li><Link href="/#parents">Parents</Link></li>*/}
             <li><Link href="/#contact">Contact</Link></li>
             <li><Link href="/cart">Panier ({totalItems})</Link></li>

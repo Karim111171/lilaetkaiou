@@ -67,7 +67,7 @@ export default function Shop() {
       <div className="shop-hero">
         <h1>Boutique</h1>
         <p>
-          Découvrez la boutique de Lila & Kaiou.
+          Bienvenue dans la boutique de Lila & Kaiou.
         </p>
       </div>
 

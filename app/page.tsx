@@ -108,7 +108,7 @@ export default function Home() {
 
       <section id="contact" className="home-section">
         <h2>Contact</h2>
-        <p>Pour licences, presse ou collaborations : contact@lilaetkaiou.com</p>
+        <p>Pour licences, presse ou collaborations :  <a href="mailto:contact@lilaetkaiou.com">contact@lilaetkaiou.com</a></p>
       </section>
     </div>
   );

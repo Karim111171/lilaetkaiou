@@ -68,6 +68,15 @@ body {
   font-size: 2.5rem;
 }
 
+.header h1 a {
+  color: inherit;        /* garde la couleur du h1 */
+  text-decoration: none; /* enlève le souligné */
+}
+
+.header h1 a:hover {
+  text-decoration: none; /* évite le souligné au hover */
+}
+
 .legal-header {
   text-align: center;
   margin: 40px 0;
@@ -77,6 +86,13 @@ body {
   display: flex;
   justify-content: center;
   margin: 40px 0 20px;
+}
+
+a[href^="mailto:"]{
+  color:inherit;
+  text-decoration:none;
+  font-weight:inherit;
+  cursor:pointer;
 }
 
 /* NAV */
@@ -90,6 +106,7 @@ nav ul {
 
 nav li {
   list-style: none;
+ 
 }
 
 nav a {
@@ -241,7 +258,7 @@ button.primary:hover {
 
 .footer {
   margin-top: 20px;
-  padding: 10px 15PX;
+  padding: 10px 15px;
   text-align: center;
   font-size: 0.8rem;
   color: #666;
@@ -263,13 +280,13 @@ button.primary:hover {
 
 .shop-hero {
   
-  padding: 20px 20px 20px;
+  padding: 10px 10px 10px;
 }
 
 .shop-hero h1 {
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .shop-hero p {
@@ -390,6 +407,13 @@ button.primary:hover {
     align-items: center;
     gap: 5px;
     padding: 0 10px;
+  }
+
+  .header-container h1 {
+
+   text-decoration: none;
+   color: inherit;
+   list-style: none;
   }
 
   nav ul {
