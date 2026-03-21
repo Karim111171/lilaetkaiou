@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
+import Header from "../../components/Header";
 
 export default function Shop() {
   const { addToCart, totalItems } = useCart();
@@ -47,19 +48,7 @@ export default function Shop() {
 
   return (
     <div className="container">
-      <header className="header">
-        <div className="header-container">
-          <h1>Lila & Kaiou</h1>
-          <nav>
-            <ul>
-              <li><Link href="/#products">Produits</Link></li>
-              <li><Link href="/#parents">Parents</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
-              <li><Link href="/cart">Panier ({totalItems})</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <h1>Boutique</h1>
 

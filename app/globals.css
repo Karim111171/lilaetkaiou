@@ -12,8 +12,8 @@
 
 html, body {
   margin: 0;
-  /*overflow-x: hidden;*/
   width: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -21,7 +21,16 @@ body {
   background-color: #ffffff;
   color: #333;
   overflow-x: hidden;
-  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* GLOBAL CONTAINER */
@@ -57,6 +66,17 @@ body {
 .header h1 {
   margin: 0;
   font-size: 2.5rem;
+}
+
+.legal-header {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.legal-button {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 20px;
 }
 
 /* NAV */
@@ -220,14 +240,26 @@ button.primary:hover {
 }
 
 .footer {
-  margin-top: 60px;
-  padding: 20px;
+  margin-top: 20px;
+  padding: 10px 15PX;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.footer p {
+  margin: 5px 0;
+}
+
+.footer a {
+  color: inherit;        /* même couleur que le texte */
+  text-decoration: none; /* enlève le souligné */
+}
+
+.footer a:hover {
+  text-decoration: underline; /* optionnel : léger effet au survol */
+}
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   body {
@@ -239,6 +271,16 @@ button.primary:hover {
     margin: 0;
     padding: 0;
   }
+
+  .legal-page h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.legal-button {
+  text-align: center;
+  margin-top: 40px;
+}
 
   .header-container {
     flex-direction: column;

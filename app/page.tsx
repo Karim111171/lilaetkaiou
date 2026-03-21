@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero */}
       <div className="hero">
         <Image src="/lila_kaiou.png" alt="Lila & Kaiou" width={600} height={400} />
-        <h2>Découvrez la pate à modeler naturelle Lila et Kaiou !</h2>
+        <h2>Découvrez la pate à modeler naturelle de Lila et Kaiou !</h2>
 	  <p>
     Créez, transformez et donnez vie à votre imagination.
   </p>

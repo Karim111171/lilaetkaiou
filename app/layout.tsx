@@ -16,7 +16,9 @@ export default function RootLayout({
     <html lang="fr">
       <body>
         <CartProvider>
-          {children}
+          <main className="main-content">
+            {children}
+          </main>
           <Footer />
         </CartProvider>
       </body>
