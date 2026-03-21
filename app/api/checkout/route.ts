@@ -1,10 +1,19 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
 export async function POST(req: Request) {
   try {
+    const secretKey = process.env.STRIPE_SECRET_KEY;
+
+    if (!secretKey) {
+      return NextResponse.json(
+        { error: "Missing STRIPE_SECRET_KEY" },
+        { status: 500 }
+      );
+    }
+
+    const stripe = new Stripe(secretKey);
+
     const { items } = await req.json();
 
     const session = await stripe.checkout.sessions.create({
@@ -23,8 +32,8 @@ export async function POST(req: Request) {
       shipping_address_collection: {
         allowed_countries: ["FR", "LB", "NL"],
       },
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/shop",
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/shop`,
     });
 
     return NextResponse.json({ url: session.url });
