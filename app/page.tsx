@@ -1,33 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
     <div className="container">
       {/* Header */}
-      <header className="header">
-  <div className="header-container">
-    <h1>Lila & Kaiou</h1>
-    <nav>
-      <ul>
-       {/*} <li><a href="#series">Série</a></li>*/}
-        <li><a href="#products">Produits</a></li>
-        <li><a href="#parents">Parents</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
+      <Header />
       {/* Hero */}
       <div className="hero">
         <Image src="/lila_kaiou.png" alt="Lila & Kaiou" width={600} height={400} />
-        <h2>Découvrez la pate à modeler naturelle de Lila et Kaiou !</h2>
+        <h2>Découvrez la pate à modeler naturelle Lila et Kaiou !</h2>
 	  <p>
-    Créez, transformez et donnez vie à votre imagination avec Kaiou.
+    Créez, transformez et donnez vie à votre imagination.
   </p>
         <Link href="/shop" className="cta-button">
-  Acheter Maintenant
+  Visiter la Boutique
 </Link>
       </div>
 {/*

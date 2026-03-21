@@ -224,6 +224,16 @@ button.primary:hover {
   margin: 0;
   width: 100%;
 }
+
+.footer {
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
   body {

@@ -1,5 +1,6 @@
 import "./globals.css";
 import { CartProvider } from "./context/CartContext";
+import Footer from "../components/Footer";
 
 export const metadata = {
   title: "Lila & Kaiou",
@@ -14,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

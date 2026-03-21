@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
+import Header from "../../components/Header";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, totalItems, totalPrice } = useCart();
@@ -38,18 +39,7 @@ export default function CartPage() {
 
   return (
     <div className="container">
-      <header className="header">
-        <div className="header-container">
-          <h1>Lila & Kaiou</h1>
-          <nav>
-            <ul>
-              <li><Link href="/shop">Boutique</Link></li>
-              <li><Link href="/#products">Produits</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <h1>Panier</h1>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useCart } from "../context/CartContext";
+import Header from "../../components/Header";
 
 export default function SuccessPage() {
   const { clearCart } = useCart();
@@ -14,17 +15,7 @@ export default function SuccessPage() {
 
   return (
     <div className="container">
-      <header className="header">
-        <div className="header-container">
-          <h1>Lila & Kaiou</h1>
-          <nav>
-            <ul>
-              <li><Link href="/shop">Boutique</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <section>
         <h1>Merci pour votre commande 💛</h1>
