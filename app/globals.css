@@ -159,11 +159,50 @@ button:hover {
   background-color: #ff4c3b;
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button.primary {
+  background-color: #ff61cd;
+}
+
+button.primary:hover {
+  background-color: #ff85d8;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #dc2d16;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #ff4c3b;
+}
+
 .products-images {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.product-card {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 /* ===== MOBILE ===== */

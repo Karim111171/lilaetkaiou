@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
     <h1>Lila & Kaiou</h1>
     <nav>
       <ul>
-        <li><a href="#series">Série</a></li>
+       {/*} <li><a href="#series">Série</a></li>*/}
         <li><a href="#products">Produits</a></li>
         <li><a href="#parents">Parents</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -21,11 +22,16 @@ export default function Home() {
       {/* Hero */}
       <div className="hero">
         <Image src="/lila_kaiou.png" alt="Lila & Kaiou" width={600} height={400} />
-        <h2>Découvrez le monde magique de Lila et Kaiou !</h2>
-        <button>Voir les épisodes</button>
+        <h2>Découvrez la pate à modeler naturelle de Lila et Kaiou !</h2>
+	  <p>
+    Créez, transformez et donnez vie à votre imagination avec Kaiou.
+  </p>
+        <Link href="/shop" className="cta-button">
+  Acheter Maintenant
+</Link>
       </div>
-
-      {/* Série */}
+{/*
+      {/* Série 
       <section id="series">
         <h2>Premiers épisodes</h2>
         <ul>
@@ -44,7 +50,7 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* Produits */}
+    {/*  {/* Produits 
       <section id="products">
   <h2>Produits dérivés</h2>
   <p>Livres, figurines, pâte à modeler éducative, jeux interactifs, et plus encore !</p>
@@ -53,11 +59,11 @@ export default function Home() {
     <Image src="/lila.png" alt="Lila" width={300} height={200} />
   </div>
 </section>
-      {/* Parents */}
+      {/* Parents 
       <section id="parents">
         <h2>Informations pour les parents</h2>
         <p>Recommandations d’âge : 5-8 ans, contenu éducatif et sûr, conseils pour suivre les épisodes avec votre enfant.</p>
-      </section>
+      </section>*/}
 
       {/* Contact */}
       <section id="contact">
