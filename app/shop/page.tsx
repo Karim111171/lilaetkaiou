@@ -8,16 +8,9 @@ export default function Shop() {
 
   const products = [
     {
-      id: 1,
-      name: "Lila & Kaiou – Pâte magique 200g",
-      price: 19.99,
-      image: "/Pot200gr.png",
-    },
+      id: 1, name: "Lila & Kaiou – Pâte magique 200g", price: 19.99, image: "/Pot200gr.png", },
     {
-      id: 2,
-      name: "Lila & Kaiou – Pâte magique Kaiou",
-      price: 24.99,
-      image: "/Kaiou.png",
+      id: 2, name: "Lila & Kaiou – Pâte magique Kaiou", price: 2.99, image: "/Kaiou.png",
     },
   ];
 
