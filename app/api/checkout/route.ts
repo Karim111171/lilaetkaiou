@@ -86,7 +86,7 @@ export async function POST(req: Request) {
       payment_method_types: ["card"],
       line_items: lineItems,
       shipping_address_collection: {
-        allowed_countries: ["FR", "LB", "NL"],
+        allowed_countries: ["LB"],
       },
       success_url: `${siteUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${siteUrl}/shop`,
