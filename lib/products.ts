@@ -19,7 +19,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 2,
-    name: "Pâte à modeler naturelle Lila & Kaiou – Kaiou",
+    name: "Pâte magique Kaiou",
     shortName: "Pâte magique Kaiou",
     price: 9.00,
     image: "/Kaiou.png",
