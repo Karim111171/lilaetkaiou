@@ -11,7 +11,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 1,
     name: "Pâte à modeler naturelle Lila & Kaiou – 200g",
-    shortName: "Pâte magique 200g",
+    shortName: "Pâte à modeler 200g",
     price: 7.50,
     image: "/Pot200gr.png",
     description:
@@ -27,7 +27,7 @@ export const PRODUCTS: Product[] = [
       "Une version inspirée du personnage Kaiou pour enrichir le jeu, l’imagination et l’univers créatif des enfants.",
   },
   {
-    id: 1,
+    id: 3,
     name: "Pâte à modeler naturelle Lila & Kaiou – 6 x 200g",
     shortName: "Pâte magique 200g",
     price: 39.00,
