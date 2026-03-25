@@ -26,6 +26,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Une pâte à modeler naturelle, douce et créative inspirée de l’univers magique de Lila & Kaiou.",
   },
+  /*
   {
     id: 21,
     name: "Stand de Pâte à modeler naturelle Lila & Kaiou – 36 x 100g",
@@ -34,7 +35,8 @@ export const PRODUCTS: Product[] = [
     image: "/36pack.png",
     description:
       "Une pâte à modeler naturelle, douce et créative inspirée de l’univers magique de Lila & Kaiou.",
-  },
+  },*/
+  
   {
     id: 3,
     name: "Magic Bucket  Lila & Kaiou – 600gr",
@@ -62,6 +64,7 @@ export const PRODUCTS: Product[] = [
     description:
       "La poupée Lila est le doudou préféré de Kaia ! – Inspirée de l’univers magique de Lila & Kaiou.",
   },
+
   {
     id: 6,
     name: "Ciné Kaiou – Lila & Kaiou – 7cmx4cm",
@@ -80,6 +83,8 @@ export const PRODUCTS: Product[] = [
     description:
       "Jeux de carte éducatif et d'eveil pour enfants a partir de 5 ans. Créé par Kaia pour jouer avec sa famille adorée",
   },
+/*
+  
   {
     id: 8,
     name: "Stop Kaiou – Lila & Kaiou – 12cm",
@@ -97,7 +102,7 @@ export const PRODUCTS: Product[] = [
     image: "/t-night.png",
     description:
       "Le T-shirt pyjama Kaiou ! Vous ne dormirez pas seul ce soir! – Inspirée de l’univers magique de Lila & Kaiou.",
-  },
+  },*/
 ];
 
 export const PRODUCTS_BY_ID = Object.fromEntries(

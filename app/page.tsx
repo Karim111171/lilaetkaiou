@@ -66,7 +66,7 @@ export default function Home() {
 
         <div className="products-images">
           <Image src="/Pot200gr.png" alt="Pâte magique 200g" width={280} height={220} />
-          <Image src="/Kaiou.png" alt="Kaiou" width={280} height={220} />
+          <Image src="/potmagic.png" alt="Kaiou" width={280} height={220} />
         </div>
 
         <div className="home-center-button">
