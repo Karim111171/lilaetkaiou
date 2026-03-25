@@ -243,7 +243,7 @@ button.primary:hover {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   align-items: start;
 }
@@ -523,6 +523,10 @@ nav a {
 
 @media (max-width: 480px) {
   .cart-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .products-grid {
     grid-template-columns: 1fr;
   }
 }
