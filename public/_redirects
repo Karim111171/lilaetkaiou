@@ -1,5 +1,0 @@
-# Rediriger tout le trafic HTTP vers HTTPS
-http://*/* https://www.lilaetkaiou.com/:splat 301!
-
-# Rediriger le domaine nu (sans www) vers www
-https://lilaetkaiou.com/* https://www.lilaetkaiou.com/:splat 301!
