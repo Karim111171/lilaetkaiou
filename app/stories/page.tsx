@@ -13,7 +13,7 @@ export default function StoriesPage() {
         </p>
 
         <div className="story-card">
-          <h2>1- L'histoire de Lila et Kaia</h2>
+          <h2>1- Lila et Kaiou</h2>
 	    <Image src="/histoirelilakaiou.png" alt="histoire de Lila et Kaiou" width={280} height={220} />
           <p>
             Un petit album illustré de Lila & Kaiou à lire en ligne ou à télécharger.
