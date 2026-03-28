@@ -595,7 +595,7 @@ useEffect(() => {
             </div>
           </div>
           
-          <div style={{ 
+          <div className="desktop-instructions" style={{ 
             display: 'flex', 
             gap: '12px', 
             fontSize: '0.85rem',
@@ -829,22 +829,35 @@ useEffect(() => {
       </div>
       
       <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes popIn {
-          from { opacity: 0; transform: scale(0.8); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Cacher les contrôles tactiles sur desktop */
-        @media (min-width: 769px) {
-          .mobile-controls {
-            display: none !important;
-          }
-        }
-      `}</style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Cacher les contrôles tactiles sur desktop */
+  @media (min-width: 769px) {
+    .mobile-controls {
+      display: none !important;
+    }
+  }
+  
+  /* Cacher les instructions sur mobile */
+  @media (max-width: 768px) {
+    .desktop-instructions {
+      display: none !important;
+    }
+  }
+`}</style>
     </div>
   );
 }
