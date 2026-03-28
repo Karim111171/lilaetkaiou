@@ -1,7 +1,5 @@
 // app/game/page.tsx - Version corrigée
 "use client";
-// @ts-nocheck
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState, useCallback } from "react";
 import Header from "../../components/Header";
 
