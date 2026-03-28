@@ -808,7 +808,7 @@ useEffect(() => {
       onTouchStart={(e) => { e.preventDefault(); setCurrentPlayerIndex(prev => prev === 0 ? 1 : 0); setErrorMessage(null); }}
       style={{
         padding: '10px 24px',
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         fontWeight: 'bold',
         background: 'linear-gradient(135deg, #3498db, #2980b9)',
         color: 'white',
@@ -827,7 +827,7 @@ useEffect(() => {
       onTouchStart={(e) => { e.preventDefault(); initGame(); }}
       style={{
         padding: '10px 24px',
-        fontSize: '0.9rem',
+        fontSize: '0.8rem',
         fontWeight: 'bold',
         background: 'linear-gradient(135deg, #e67e22, #d35400)',
         color: 'white',
