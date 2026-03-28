@@ -1,4 +1,4 @@
-// app/game/page.tsx
+// app/game/page.tsx - Version corrigée
 "use client";
 import { useEffect, useRef, useState, useCallback } from "react";
 import Header from "../../components/Header";
@@ -162,7 +162,6 @@ export default function SoLongGame() {
   let foundPlayer2 = false;
   
   // Chercher les positions des deux joueurs dans la map
-  // On utilise 'P' pour Kaiou et 'L' pour Lila
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[0].length; x++) {
       if (map[y][x] === 'P' && !foundPlayer1) {
@@ -179,11 +178,9 @@ export default function SoLongGame() {
   
   // Si les positions ne sont pas définies dans la map, on les place automatiquement
   if (!foundPlayer1 || !foundPlayer2) {
-    // Trouver des positions vides aux extrémités opposées
     const height = map.length;
     const width = map[0].length;
     
-    // Chercher en haut à gauche pour Kaiou
     if (!foundPlayer1) {
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -198,7 +195,6 @@ export default function SoLongGame() {
       }
     }
     
-    // Chercher en bas à droite pour Lila
     if (!foundPlayer2) {
       for (let y = height - 1; y >= 0; y--) {
         for (let x = width - 1; x >= 0; x--) {
@@ -280,7 +276,7 @@ export default function SoLongGame() {
       if (newCollectibles === 0) {
         isLevelComplete = true;
       } else {
-        setErrorMessage(`Encore ${newCollectibles} ⭐`);
+        setErrorMessage(`Encore ${newCollectibles} ⭐ à collecter`);
         setTimeout(() => setErrorMessage(null), 1000);
         return;
       }
@@ -306,38 +302,35 @@ export default function SoLongGame() {
     ));
     
     if (isLevelComplete) {
-  // Points normaux pour les pièces ramassées
-  setScores(prev => ({
-    player1: prev.player1 + (currentPlayerIndex === 0 ? newPlayerCollectibles : players[0].collectibles),
-    player2: prev.player2 + (currentPlayerIndex === 1 ? newPlayerCollectibles : players[1].collectibles)
-  }));
-  
-  // Bonus de 1 point pour le premier qui sort
-  if (firstFinisher === null) {
-    setFirstFinisher(currentPlayerIndex);
-    setScores(prev => ({
-      player1: prev.player1 + (currentPlayerIndex === 0 ? 1 : 0),
-      player2: prev.player2 + (currentPlayerIndex === 1 ? 1 : 0)
-    }));
-    setErrorMessage(`🎉 ${players[currentPlayerIndex].name} sort en premier et gagne 1 point bonus ! 🎉`);
-    setTimeout(() => setErrorMessage(null), 2000);
-  }
-  
-  setShowLevelCompleteOverlay(true);
-  setTimeout(() => {
-    setShowLevelCompleteOverlay(false);
-    setFirstFinisher(null); // Réinitialiser pour le prochain niveau
-    nextLevel();
-  }, 2000);
-} else {
+      setScores(prev => ({
+        player1: prev.player1 + (currentPlayerIndex === 0 ? newPlayerCollectibles : players[0].collectibles),
+        player2: prev.player2 + (currentPlayerIndex === 1 ? newPlayerCollectibles : players[1].collectibles)
+      }));
+      
+      if (firstFinisher === null) {
+        setFirstFinisher(currentPlayerIndex);
+        setScores(prev => ({
+          player1: prev.player1 + (currentPlayerIndex === 0 ? 1 : 0),
+          player2: prev.player2 + (currentPlayerIndex === 1 ? 1 : 0)
+        }));
+        setErrorMessage(`🎉 ${players[currentPlayerIndex].name} sort en premier et gagne 1 point bonus ! 🎉`);
+        setTimeout(() => setErrorMessage(null), 2000);
+      }
+      
+      setShowLevelCompleteOverlay(true);
+      setTimeout(() => {
+        setShowLevelCompleteOverlay(false);
+        setFirstFinisher(null);
+        nextLevel();
+      }, 2000);
+    } else {
       setCurrentPlayerIndex(prev => prev === 0 ? 1 : 0);
     }
-  }, [gameState, players, currentPlayerIndex, currentLevel, levels.length, nextLevel]);
+  }, [gameState, players, currentPlayerIndex, currentLevel, levels.length, nextLevel, firstFinisher]);
 
   // Gestion des touches
   useEffect(() => {
   const handleKeyDown = (e: KeyboardEvent) => {
-    // Empêcher le scroll de la page
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
         e.key === 'z' || e.key === 'Z' || e.key === 's' || e.key === 'S' ||
         e.key === 'q' || e.key === 'Q' || e.key === 'd' || e.key === 'D' ||
@@ -347,7 +340,6 @@ export default function SoLongGame() {
     
     if (gameState.levelComplete || gameState.isComplete) return;
     
-    // Kaiou (Joueur 1) - Flèches directionnelles
     if (currentPlayerIndex === 0) {
       switch(e.key) {
         case 'ArrowUp': movePlayer(0, -1); break;
@@ -357,29 +349,23 @@ export default function SoLongGame() {
       }
     }
     
-    // Lila (Joueur 2) - Touches ZQSD ou WASD
     if (currentPlayerIndex === 1) {
       switch(e.key) {
-        // Z ou W pour haut
-        case 'z': case 'Z':
+        case 'z': case 'Z': 
           movePlayer(0, -1);
           break;
-        // S pour bas
-        case 's': case 'S':
+        case 's': case 'S': 
           movePlayer(0, 1);
           break;
-        // Q ou A pour gauche
         case 'q': case 'Q': 
           movePlayer(-1, 0);
           break;
-        // D pour droite
         case 'd': case 'D':
           movePlayer(1, 0);
           break;
       }
     }
     
-    // Touches communes
     switch(e.key) {
       case ' ': case 'Space':
         e.preventDefault();
@@ -403,97 +389,102 @@ export default function SoLongGame() {
     }
   }, [imagesLoaded, initGame, levels.length]);
 
-  // Dessiner le jeu
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || !gameState.map.length || !imagesLoaded) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    const maxHeight = window.innerHeight - 280;
-    const maxWidth = Math.min(window.innerWidth - 40, 1000);
-    const mapWidth = gameState.map[0].length;
-    const mapHeight = gameState.map.length;
-    
-    let cellSize = Math.min(
-      Math.floor(maxWidth / mapWidth),
-      Math.floor(maxHeight / mapHeight),
-      72
-    );
-    cellSize = Math.max(36, cellSize);
-    
-    const width = mapWidth * cellSize;
-    const height = mapHeight * cellSize;
-    
-    canvas.width = width;
-    canvas.height = height;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    
-    gameState.map.forEach((row, y) => {
-      row.forEach((cell, x) => {
-        const imgX = x * cellSize;
-        const imgY = y * cellSize;
-        
-        if (images.floor && images.floor.complete && images.floor.naturalWidth > 0) {
-          ctx.drawImage(images.floor, imgX, imgY, cellSize, cellSize);
-        } else {
-          ctx.fillStyle = '#ecf0f1';
-          ctx.fillRect(imgX, imgY, cellSize, cellSize);
-        }
-        
-        switch(cell) {
-          case '1':
-            if (images.wall && images.wall.complete && images.wall.naturalWidth > 0) {
-              ctx.drawImage(images.wall, imgX, imgY, cellSize, cellSize);
-            } else {
-              ctx.fillStyle = '#2c3e50';
-              ctx.fillRect(imgX, imgY, cellSize, cellSize);
-            }
-            break;
-          case 'C':
-            if (images.collectible && images.collectible.complete && images.collectible.naturalWidth > 0) {
-              ctx.drawImage(images.collectible, imgX, imgY, cellSize, cellSize);
-            } else {
-              ctx.fillStyle = '#f1c40f';
-              ctx.beginPath();
-              ctx.arc(imgX + cellSize/2, imgY + cellSize/2, cellSize * 0.3, 0, 2 * Math.PI);
-              ctx.fill();
-            }
-            break;
-          case 'P':
-            if (images.player1 && images.player1.complete && images.player1.naturalWidth > 0) {
-              ctx.drawImage(images.player1, imgX, imgY, cellSize, cellSize);
-            } else {
-              ctx.fillStyle = players[0].color;
-              ctx.beginPath();
-              ctx.arc(imgX + cellSize/2, imgY + cellSize/2, cellSize * 0.35, 0, 2 * Math.PI);
-              ctx.fill();
-            }
-            break;
-          case 'L':
-            if (images.player2 && images.player2.complete && images.player2.naturalWidth > 0) {
-              ctx.drawImage(images.player2, imgX, imgY, cellSize, cellSize);
-            } else {
-              ctx.fillStyle = players[1].color;
-              ctx.beginPath();
-              ctx.arc(imgX + cellSize/2, imgY + cellSize/2, cellSize * 0.35, 0, 2 * Math.PI);
-              ctx.fill();
-            }
-            break;
-          case 'E':
-            if (images.exit && images.exit.complete && images.exit.naturalWidth > 0) {
-              ctx.drawImage(images.exit, imgX, imgY, cellSize, cellSize);
-            } else {
-              ctx.fillStyle = '#2ecc71';
-              ctx.fillRect(imgX + cellSize * 0.15, imgY + cellSize * 0.15, cellSize * 0.7, cellSize * 0.7);
-            }
-            break;
-        }
-      });
+  // Dessiner le jeu - Version qui s'adapte sans scroll
+useEffect(() => {
+  const canvas = canvasRef.current;
+  if (!canvas || !gameState.map.length || !imagesLoaded) return;
+  
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  
+  const mapWidth = gameState.map[0].length;
+  const mapHeight = gameState.map.length;
+  
+  // Calculer l'espace disponible (en pixels)
+  const availableWidth = Math.min(window.innerWidth - 80, 1000);
+  const availableHeight = window.innerHeight - 280;
+  
+  // Calculer la taille des cellules pour que la map tienne
+  let cellSizeByWidth = Math.floor(availableWidth / mapWidth);
+  let cellSizeByHeight = Math.floor(availableHeight / mapHeight);
+  
+  // Prendre la plus petite pour que tout tienne
+  let cellSize = Math.min(cellSizeByWidth, cellSizeByHeight);
+  
+  // Limites : entre 28px et 70px
+  cellSize = Math.min(70, Math.max(28, cellSize));
+  
+  const width = mapWidth * cellSize;
+  const height = mapHeight * cellSize;
+  
+  canvas.width = width;
+  canvas.height = height;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+  
+  gameState.map.forEach((row, y) => {
+    row.forEach((cell, x) => {
+      const imgX = x * cellSize;
+      const imgY = y * cellSize;
+      
+      if (images.floor && images.floor.complete && images.floor.naturalWidth > 0) {
+        ctx.drawImage(images.floor, imgX, imgY, cellSize, cellSize);
+      } else {
+        ctx.fillStyle = '#ecf0f1';
+        ctx.fillRect(imgX, imgY, cellSize, cellSize);
+      }
+      
+      switch(cell) {
+        case '1':
+          if (images.wall && images.wall.complete && images.wall.naturalWidth > 0) {
+            ctx.drawImage(images.wall, imgX, imgY, cellSize, cellSize);
+          } else {
+            ctx.fillStyle = '#2c3e50';
+            ctx.fillRect(imgX, imgY, cellSize, cellSize);
+          }
+          break;
+        case 'C':
+          if (images.collectible && images.collectible.complete && images.collectible.naturalWidth > 0) {
+            ctx.drawImage(images.collectible, imgX, imgY, cellSize, cellSize);
+          } else {
+            ctx.fillStyle = '#f1c40f';
+            ctx.beginPath();
+            ctx.arc(imgX + cellSize/2, imgY + cellSize/2, cellSize * 0.3, 0, 2 * Math.PI);
+            ctx.fill();
+          }
+          break;
+        case 'P':
+          if (images.player1 && images.player1.complete && images.player1.naturalWidth > 0) {
+            ctx.drawImage(images.player1, imgX, imgY, cellSize, cellSize);
+          } else {
+            ctx.fillStyle = players[0].color;
+            ctx.beginPath();
+            ctx.arc(imgX + cellSize/2, imgY + cellSize/2, cellSize * 0.35, 0, 2 * Math.PI);
+            ctx.fill();
+          }
+          break;
+        case 'L':
+          if (images.player2 && images.player2.complete && images.player2.naturalWidth > 0) {
+            ctx.drawImage(images.player2, imgX, imgY, cellSize, cellSize);
+          } else {
+            ctx.fillStyle = players[1].color;
+            ctx.beginPath();
+            ctx.arc(imgX + cellSize/2, imgY + cellSize/2, cellSize * 0.35, 0, 2 * Math.PI);
+            ctx.fill();
+          }
+          break;
+        case 'E':
+          if (images.exit && images.exit.complete && images.exit.naturalWidth > 0) {
+            ctx.drawImage(images.exit, imgX, imgY, cellSize, cellSize);
+          } else {
+            ctx.fillStyle = '#2ecc71';
+            ctx.fillRect(imgX + cellSize * 0.15, imgY + cellSize * 0.15, cellSize * 0.7, cellSize * 0.7);
+          }
+          break;
+      }
     });
-  }, [gameState.map, images, imagesLoaded, players]);
+  });
+}, [gameState.map, images, imagesLoaded, players]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -527,65 +518,74 @@ export default function SoLongGame() {
         margin: '0 auto',
         width: '100%'
       }}>
-        {/* Ligne 1 : Titre + Scores + Niveau */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '12px',
-          marginBottom: '8px',
-          flexWrap: 'wrap'
-        }}>
-          <h1 style={{ color: '#dc2d16', fontSize: '1.4rem', margin: 0 }}>LE TRESOR D'ALI BABA</h1>
-          
-          <div style={{ display: 'flex', gap: '15px' }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '5px 14px',
-              borderRadius: '25px',
-              background: currentPlayerIndex === 0 ? `${players[0].color}25` : '#f5f5f5',
-              border: currentPlayerIndex === 0 ? `2px solid ${players[0].color}` : '1px solid #e0e0e0'
-            }}>
-              <span style={{ fontSize: '2rem' }}>{players[0].emoji}</span>
-              <span style={{ fontWeight: 'bold', fontSize: '1rem', color: players[0].color }}>Kaiou</span>
-              <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: players[0].color }}>{scores.player1}</span>
-              {currentPlayerIndex === 0 && <span style={{ fontSize: '0.7rem', background: players[0].color, color: 'white', padding: '2px 8px', borderRadius: '12px' }}>TOUR</span>}
-            </div>
-            
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '5px 14px',
-              borderRadius: '25px',
-              background: currentPlayerIndex === 1 ? `${players[1].color}25` : '#f5f5f5',
-              border: currentPlayerIndex === 1 ? `2px solid ${players[1].color}` : '1px solid #e0e0e0'
-            }}>
-              <span style={{ fontSize: '1.2rem' }}>{players[1].emoji}</span>
-              <span style={{ fontWeight: 'bold', fontSize: '1rem', color: players[1].color }}>Lila</span>
-              <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: players[1].color }}>{scores.player2}</span>
-              {currentPlayerIndex === 1 && <span style={{ fontSize: '0.7rem', background: players[1].color, color: 'white', padding: '2px 8px', borderRadius: '12px' }}>TOUR</span>}
-            </div>
-          </div>
-          
-          <div style={{ fontSize: '0.8 rem', color: '#666', background: '#f0f0f0', padding: '5px 12px', borderRadius: '20px' }}>
-            {levels[currentLevel]?.name} • {currentLevel + 1}/{levels.length}
-          </div>
-        </div>
+        {/* Titre et Scores */}
+<div style={{
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gap: '12px',
+  marginBottom: '4px',
+  flexWrap: 'wrap'
+}}>
+  <div>
+    <h1 style={{ color: '#dc2d16', fontSize: '1.4rem', margin: 0 }}>LE TRESOR D'ALI BABA</h1>
+    {/* Nom du niveau - en dessous du titre, aligné à gauche */}
+    <div style={{
+      fontSize: '1rem',
+      color: '#666',
+      marginTop: '4px',
+      marginLeft: '2px'
+    }}>
+      {levels[currentLevel]?.name} • {currentLevel + 1}/{levels.length}
+    </div>
+  </div>
+  
+  <div style={{ display: 'flex', gap: '15px' }}>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      padding: '5px 14px',
+      borderRadius: '25px',
+      background: currentPlayerIndex === 0 ? `${players[0].color}25` : '#f5f5f5',
+      border: currentPlayerIndex === 0 ? `2px solid ${players[0].color}` : '1px solid #e0e0e0'
+    }}>
+      <span style={{ fontSize: '1.2rem' }}>{players[0].emoji}</span>
+      <span style={{ fontWeight: 'bold', fontSize: '1rem', color: players[0].color }}>Kaiou</span>
+      <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: players[0].color }}>{scores.player1}</span>
+      {currentPlayerIndex === 0 && <span style={{ fontSize: '1.3rem', background: players[0].color, color: 'white', padding: '2px 8px', borderRadius: '12px' }}>TOUR</span>}
+    </div>
+    
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      padding: '5px 14px',
+      borderRadius: '25px',
+      background: currentPlayerIndex === 1 ? `${players[1].color}25` : '#f5f5f5',
+      border: currentPlayerIndex === 1 ? `2px solid ${players[1].color}` : '1px solid #e0e0e0'
+    }}>
+      <span style={{ fontSize: '1.2rem' }}>{players[1].emoji}</span>
+      <span style={{ fontWeight: 'bold', fontSize: '1rem', color: players[1].color }}>Lila</span>
+      <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: players[1].color }}>{scores.player2}</span>
+      {currentPlayerIndex === 1 && <span style={{ fontSize: '1.3rem', background: players[1].color, color: 'white', padding: '2px 8px', borderRadius: '12px' }}>TOUR</span>}
+    </div>
+  </div>
+</div>
+
+
         
         {/* Ligne 2 : Stats + Instructions */}
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          gap: '10px',
-          marginBottom: '10px',
+          gap: '6px',
+          marginBottom: '8px',
           flexWrap: 'wrap'
         }}>
           <div style={{ display: 'flex', gap: '15px' }}>
-            <div style={{ fontSize: '1 rem', background: '#f9f9f9', padding: '5px 12px', borderRadius: '20px' }}>
+            <div style={{ fontSize: '1rem', background: '#f9f9f9', padding: '5px 12px', borderRadius: '20px' }}>
               ⭐ <span style={{ color: '#3498db', fontWeight: 'bold' }}>Kaiou: {players[0].collectibles}</span> / 
               <span style={{ color: '#ff69b4', fontWeight: 'bold' }}> Lila: {players[1].collectibles}</span> / 
               <span style={{ color: '#f1c40f', fontWeight: 'bold' }}> Reste: {gameState.collectibles}</span>
@@ -598,12 +598,13 @@ export default function SoLongGame() {
           <div style={{ 
             display: 'flex', 
             gap: '12px', 
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             background: '#e8f0fe',
             padding: '5px 14px',
             borderRadius: '25px'
           }}>
-            <span>🎮 <strong style={{ color: '#3498db' }}>Kaiou</strong> A S Q D |  🎮 <strong style={{ color: '#ff69b4' }}>Lila</strong> : ⬆️⬇️⬅️➡️</span>
+            <span>🎮 <strong style={{ color: '#3498db' }}>Kaiou</strong> : ⬆️⬇️⬅️➡️</span>
+            <span>🎮 <strong style={{ color: '#ff69b4' }}>Lila</strong> : Z S Q D</span>
             <span>🔄 <strong>ESPACE</strong> pour passer</span>
             <span>🔁 <strong>R</strong> pour recommencer</span>
           </div>
@@ -619,7 +620,7 @@ export default function SoLongGame() {
             borderRadius: '20px',
             fontSize: '0.75rem',
             textAlign: 'center',
-            maxWidth: '220px'
+            maxWidth: '300px'
           }}>
             ⚠️ {errorMessage}
           </div>
@@ -639,96 +640,140 @@ export default function SoLongGame() {
           <canvas ref={canvasRef} style={{ borderRadius: '8px', display: 'block' }} />
           
           {/* Overlay de fin de niveau */}
-{showLevelCompleteOverlay && (
-  <div style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: 'rgba(0, 0, 0, 0.8)',
-    borderRadius: '16px',
-    animation: 'fadeIn 0.3s ease'
-  }}>
-    <div style={{
-      background: 'linear-gradient(135deg, #3498db, #2980b9)',
-      padding: '20px 40px',
-      borderRadius: '30px',
-      textAlign: 'center',
-      color: 'white',
-      boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-      animation: 'popIn 0.3s ease'
-    }}>
-      <div style={{ fontSize: '3rem', marginBottom: '8px' }}>✨</div>
-      <h2 style={{ margin: 0, fontSize: '1.6rem' }}>Niveau terminé !</h2>
-      
-      {/* Afficher le bonus si quelqu'un est sorti en premier */}
-      {firstFinisher !== null && (
-        <div style={{
-          marginTop: '10px',
-          fontSize: '1rem',
-          background: 'rgba(255,255,255,0.3)',
-          padding: '5px 15px',
-          borderRadius: '25px',
-          display: 'inline-block'
-        }}>
-          🏆 +1 point pour {players[firstFinisher].name} ! 🏆
-        </div>
-      )}
-      
-      <div style={{ 
-        marginTop: '12px', 
-        fontSize: '1rem',
-        background: 'rgba(255,255,255,0.2)',
-        padding: '4px 12px',
-        borderRadius: '20px',
-        display: 'inline-block'
-      }}>
-        😺 {players[0].collectibles}  •  🌸 {players[1].collectibles}
-      </div>
-    </div>
-  </div>
-)}
+          {showLevelCompleteOverlay && (
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              background: 'rgba(0, 0, 0, 0.8)',
+              borderRadius: '16px',
+              animation: 'fadeIn 0.3s ease'
+            }}>
+              <div style={{
+                background: 'linear-gradient(135deg, #3498db, #2980b9)',
+                padding: '20px 40px',
+                borderRadius: '30px',
+                textAlign: 'center',
+                color: 'white',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                animation: 'popIn 0.3s ease'
+              }}>
+                <div style={{ fontSize: '3rem', marginBottom: '8px' }}>✨</div>
+                <h2 style={{ margin: 0, fontSize: '1.6rem' }}>Niveau terminé !</h2>
+                
+                {firstFinisher !== null && (
+                  <div style={{
+                    marginTop: '10px',
+                    fontSize: '1rem',
+                    background: 'rgba(255,255,255,0.3)',
+                    padding: '5px 15px',
+                    borderRadius: '25px',
+                    display: 'inline-block'
+                  }}>
+                    🏆 +1 point pour {players[firstFinisher].name} ! 🏆
+                  </div>
+                )}
+                
+                <div style={{ 
+                  marginTop: '12px', 
+                  fontSize: '1rem',
+                  background: 'rgba(255,255,255,0.2)',
+                  padding: '4px 12px',
+                  borderRadius: '20px',
+                  display: 'inline-block'
+                }}>
+                  😺 {players[0].collectibles}  •  🌸 {players[1].collectibles}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         
-        {/* Boutons */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', margin: '8px 0' }}>
-          <button 
-            onClick={() => {
-              setCurrentPlayerIndex(prev => prev === 0 ? 1 : 0);
-              setErrorMessage(null);
-            }}
-            style={{
-              background: '#3498db',
-              color: 'white',
-              border: 'none',
-              borderRadius: '25px',
-              padding: '6px 18px',
-              fontSize: '0.8rem',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-          >
-            🔄 Passer le tour
-          </button>
-          <button 
-            onClick={() => initGame()}
-            style={{
-              background: '#e67e22',
-              color: 'white',
-              border: 'none',
-              borderRadius: '25px',
-              padding: '6px 18px',
-              fontSize: '0.8rem',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-          >
-            🔄 Recommencer
-          </button>
+        {/* Contrôles tactiles pour mobile */}
+        <div className="mobile-controls" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          margin: '10px 0',
+          gap: '8px'
+        }}>
+          {/* Flèches directionnelles */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+            <button
+              onTouchStart={(e) => { e.preventDefault(); movePlayer(0, -1); }}
+              style={{
+                width: '65px', height: '65px', fontSize: '2rem',
+                background: '#2c3e50', color: 'white', border: 'none',
+                borderRadius: '35px', touchAction: 'manipulation',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+              }}
+            >⬆️</button>
+          </div>
+          
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+            <button
+              onTouchStart={(e) => { e.preventDefault(); movePlayer(-1, 0); }}
+              style={{
+                width: '65px', height: '65px', fontSize: '2rem',
+                background: '#2c3e50', color: 'white', border: 'none',
+                borderRadius: '35px', touchAction: 'manipulation',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+              }}
+            >⬅️</button>
+            <button
+              onTouchStart={(e) => { e.preventDefault(); movePlayer(0, 1); }}
+              style={{
+                width: '65px', height: '65px', fontSize: '2rem',
+                background: '#2c3e50', color: 'white', border: 'none',
+                borderRadius: '35px', touchAction: 'manipulation',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+              }}
+            >⬇️</button>
+            <button
+              onTouchStart={(e) => { e.preventDefault(); movePlayer(1, 0); }}
+              style={{
+                width: '65px', height: '65px', fontSize: '2rem',
+                background: '#2c3e50', color: 'white', border: 'none',
+                borderRadius: '35px', touchAction: 'manipulation',
+                boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+              }}
+            >➡️</button>
+          </div>
+          
+          {/* Boutons d'action */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', marginTop: '5px' }}>
+            <button
+              onTouchStart={(e) => { e.preventDefault(); setCurrentPlayerIndex(prev => prev === 0 ? 1 : 0); setErrorMessage(null); }}
+              style={{
+                padding: '6px 18px', fontSize: '0.8rem',
+                background: '#3498db', color: 'white', border: 'none',
+                borderRadius: '30px', touchAction: 'manipulation'
+              }}
+            >🔄 Passer le tour</button>
+            <button
+              onTouchStart={(e) => { e.preventDefault(); initGame(); }}
+              style={{
+                padding: '6px 18px', fontSize: '0.8rem',
+                background: '#e67e22', color: 'white', border: 'none',
+                borderRadius: '30px', touchAction: 'manipulation'
+              }}
+            >🔄 Recommencer</button>
+          </div>
+          
+          {/* Indicateur du joueur actif */}
+          <div style={{
+            fontSize: '0.8rem', marginTop: '5px', padding: '4px 12px',
+            background: currentPlayerIndex === 0 ? `${players[0].color}20` : `${players[1].color}20`,
+            borderRadius: '20px', fontWeight: 'bold',
+            color: currentPlayerIndex === 0 ? players[0].color : players[1].color
+          }}>
+            🎮 {players[currentPlayerIndex].name} joue
+          </div>
         </div>
         
         {/* Fin du jeu */}
@@ -789,13 +834,14 @@ export default function SoLongGame() {
           to { opacity: 1; }
         }
         @keyframes popIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
+          from { opacity: 0; transform: scale(0.8); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Cacher les contrôles tactiles sur desktop */
+        @media (min-width: 769px) {
+          .mobile-controls {
+            display: none !important;
           }
         }
       `}</style>
