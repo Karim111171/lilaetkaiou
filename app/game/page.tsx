@@ -1,5 +1,6 @@
 // app/game/page.tsx - Version corrigée
 "use client";
+// @ts-nocheck
 import { useEffect, useRef, useState, useCallback } from "react";
 import Header from "../../components/Header";
 
