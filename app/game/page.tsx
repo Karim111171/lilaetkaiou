@@ -412,7 +412,7 @@ useEffect(() => {
   let cellSize = Math.min(cellSizeByWidth, cellSizeByHeight);
   
   // Limites : entre 28px et 70px
-  cellSize = Math.min(70, Math.max(28, cellSize));
+  cellSize = Math.min(70, Math.max(24, cellSize));
   
   const width = mapWidth * cellSize;
   const height = mapHeight * cellSize;
@@ -626,73 +626,77 @@ useEffect(() => {
           </div>
         )}
         
-        {/* Canvas avec overlay */}
-        <div style={{
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: '6px 0',
-          background: '#2c3e50',
-          padding: '10px',
-          borderRadius: '16px'
+       {/* Canvas avec overlay - avec scroll horizontal sur mobile */}
+<div style={{
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: '6px 0',
+  background: '#2c3e50',
+  padding: '10px',
+  borderRadius: '16px',
+  overflowX: 'auto',
+  overflowY: 'hidden',
+  maxWidth: '100%',
+  WebkitOverflowScrolling: 'touch'
+}}>
+  <canvas ref={canvasRef} style={{ borderRadius: '8px', display: 'block' }} />
+  
+  {/* Overlay de fin de niveau */}
+  {showLevelCompleteOverlay && (
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: 'rgba(0, 0, 0, 0.8)',
+      borderRadius: '16px',
+      animation: 'fadeIn 0.3s ease'
+    }}>
+      <div style={{
+        background: 'linear-gradient(135deg, #3498db, #2980b9)',
+        padding: '20px 40px',
+        borderRadius: '30px',
+        textAlign: 'center',
+        color: 'white',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+        animation: 'popIn 0.3s ease'
+      }}>
+        <div style={{ fontSize: '3rem', marginBottom: '8px' }}>✨</div>
+        <h2 style={{ margin: 0, fontSize: '1.6rem' }}>Niveau terminé !</h2>
+        
+        {firstFinisher !== null && (
+          <div style={{
+            marginTop: '10px',
+            fontSize: '1rem',
+            background: 'rgba(255,255,255,0.3)',
+            padding: '5px 15px',
+            borderRadius: '25px',
+            display: 'inline-block'
+          }}>
+            🏆 +1 point pour {players[firstFinisher].name} ! 🏆
+          </div>
+        )}
+        
+        <div style={{ 
+          marginTop: '12px', 
+          fontSize: '1rem',
+          background: 'rgba(255,255,255,0.2)',
+          padding: '4px 12px',
+          borderRadius: '20px',
+          display: 'inline-block'
         }}>
-          <canvas ref={canvasRef} style={{ borderRadius: '8px', display: 'block' }} />
-          
-          {/* Overlay de fin de niveau */}
-          {showLevelCompleteOverlay && (
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              background: 'rgba(0, 0, 0, 0.8)',
-              borderRadius: '16px',
-              animation: 'fadeIn 0.3s ease'
-            }}>
-              <div style={{
-                background: 'linear-gradient(135deg, #3498db, #2980b9)',
-                padding: '20px 40px',
-                borderRadius: '30px',
-                textAlign: 'center',
-                color: 'white',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-                animation: 'popIn 0.3s ease'
-              }}>
-                <div style={{ fontSize: '3rem', marginBottom: '8px' }}>✨</div>
-                <h2 style={{ margin: 0, fontSize: '1.6rem' }}>Niveau terminé !</h2>
-                
-                {firstFinisher !== null && (
-                  <div style={{
-                    marginTop: '10px',
-                    fontSize: '1rem',
-                    background: 'rgba(255,255,255,0.3)',
-                    padding: '5px 15px',
-                    borderRadius: '25px',
-                    display: 'inline-block'
-                  }}>
-                    🏆 +1 point pour {players[firstFinisher].name} ! 🏆
-                  </div>
-                )}
-                
-                <div style={{ 
-                  marginTop: '12px', 
-                  fontSize: '1rem',
-                  background: 'rgba(255,255,255,0.2)',
-                  padding: '4px 12px',
-                  borderRadius: '20px',
-                  display: 'inline-block'
-                }}>
-                  😺 {players[0].collectibles}  •  🌸 {players[1].collectibles}
-                </div>
-              </div>
-            </div>
-          )}
+          😺 {players[0].collectibles}  •  🌸 {players[1].collectibles}
         </div>
+      </div>
+    </div>
+  )}
+</div>
         
         {/* Contrôles tactiles pour mobile */}
         <div className="mobile-controls" style={{
