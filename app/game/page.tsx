@@ -728,7 +728,7 @@ useEffect(() => {
         justifyContent: 'center',
         transition: 'all 0.05s linear'
       }}
-      onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.92)'}
+      
       onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
     >⬆️</button>
     
@@ -752,7 +752,7 @@ useEffect(() => {
           justifyContent: 'center',
           transition: 'all 0.05s linear'
         }}
-        onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.92)'}
+       
         onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >⬅️</button>
       
@@ -774,7 +774,7 @@ useEffect(() => {
           justifyContent: 'center',
           transition: 'all 0.05s linear'
         }}
-        onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.92)'}
+        
         onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >⬇️</button>
       
@@ -796,7 +796,7 @@ useEffect(() => {
           justifyContent: 'center',
           transition: 'all 0.05s linear'
         }}
-        onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.92)'}
+       
         onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >➡️</button>
     </div>
@@ -819,7 +819,7 @@ useEffect(() => {
         boxShadow: '0 4px 12px rgba(52,152,219,0.3)',
         transition: 'all 0.05s linear'
       }}
-      onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.96)'}
+      
       onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
     >🔄 Passer le tour</button>
     
@@ -838,7 +838,7 @@ useEffect(() => {
         boxShadow: '0 4px 12px rgba(230,126,34,0.3)',
         transition: 'all 0.05s linear'
       }}
-      onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.96)'}
+      
       onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
     >🔄 Recommencer</button>
   </div>
