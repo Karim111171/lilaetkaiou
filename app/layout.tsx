@@ -7,8 +7,8 @@ export const metadata = {
   description: "La pâte à modeler naturelle de Lila & Kaiou",
    icons: {
     icon: "/lila_kaiou",        // pour favicon standard
-    shortcut: "/lila_kaiou.png",    // pour raccourci
-    apple: "/lila_kaiou.png",       // pour iOS (optionnel)
+    shortcut: "/poupeekaiou.png",    // pour raccourci
+    apple: "/poupeekaiou.png",       // pour iOS (optionnel)
   },
 };
 
