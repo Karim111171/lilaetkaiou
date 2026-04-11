@@ -529,7 +529,7 @@ useEffect(() => {
   flexWrap: 'wrap'
 }}>
   <div>
-    <h1 style={{ color: '#dc2d16', fontSize: '1.4rem', margin: 0 }}>LE TRESOR D'ALI BABA</h1>
+    <h1 style={{ color: '#dc2d16', fontSize: '1.4rem', margin: 0 }}>LA CHASSE AU TRESOR</h1>
     {/* Nom du niveau - en dessous du titre, aligné à gauche */}
     <div style={{
       fontSize: '1rem',
