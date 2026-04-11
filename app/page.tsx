@@ -11,7 +11,7 @@ export default function Home() {
         <Image
           src="/lila_kaiou.png"
           alt="Lila & Kaiou"
-          width={600}
+          width={500}
           height={400}
         />
 
