@@ -713,8 +713,8 @@ useEffect(() => {
     <button
       onTouchStart={(e) => { e.preventDefault(); movePlayer(0, -1); }}
       style={{
-        width: '70px',
-        height: '70px',
+        width: '35px',
+        height: '35px',
         fontSize: '2rem',
          background: 'linear-gradient(145deg, #3498db, #2980b9)',
         color: '#ecf0f1',
@@ -737,8 +737,8 @@ useEffect(() => {
       <button
         onTouchStart={(e) => { e.preventDefault(); movePlayer(-1, 0); }}
         style={{
-          width: '70px',
-          height: '70px',
+          width: '35px',
+          height: '35px',
           fontSize: '2rem',
            background: 'linear-gradient(145deg, #3498db, #2980b9)',
           color: '#ecf0f1',
@@ -759,8 +759,8 @@ useEffect(() => {
       <button
         onTouchStart={(e) => { e.preventDefault(); movePlayer(0, 1); }}
         style={{
-          width: '70px',
-          height: '70px',
+          width: '35px',
+          height: '35px',
           fontSize: '2rem',
            background: 'linear-gradient(145deg, #3498db, #2980b9)',
           color: '#ecf0f1',
@@ -781,8 +781,8 @@ useEffect(() => {
       <button
         onTouchStart={(e) => { e.preventDefault(); movePlayer(1, 0); }}
         style={{
-          width: '70px',
-          height: '70px',
+          width: '35px',
+          height: '35px',
           fontSize: '2rem',
           background: 'linear-gradient(145deg, #3498db, #2980b9)',
           color: '#ecf0f1',
